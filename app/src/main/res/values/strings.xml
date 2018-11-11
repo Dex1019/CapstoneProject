@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Reddit Reader</string>
+    <string name="title_post_detail">Post Details</string>
+    <string name="share">Share</string>
+
+    <string name="search_title">Search</string>
+    <string name="sort">Sort</string>
+    <string name="manage_subreddits">Manage Subreddits</string>
+
+    <string name="sort_hot">Hot</string>
+    <string name="sort_new">New</string>
+    <string name="sort_top">Top</string>
+    <string name="sort_controversial">Controversial</string>
+
+    <string name="key_sort_type">sortType</string>
+    <string name="favroite_srs_key">favorite_srs_key</string>
+
+    <string name="profile">Profile</string>
+    <string name="username_prefix">u/</string>
+    <string name="karma">&#160;Karma</string>
+    <string name="gold_credits">&#160;Gold Credits</string>
+    <string name="reddit_age">&#160;Reddit age</string>
+    <string name="login">Login</string>
+    <string name="login_with_reddit">Please login with your reddit account!</string>
+    <string name="ok">ok</string>
+    <string name="subreddit_prefix">t5_</string>
+
+    <string name="posts_list_screen">Posts List Screen</string>
+    <string name="post_detail_screen">Post Detail Screen</string>
+    <string name="login_screen">Login Screen</string>
+    <string name="search_srs">Search for subreddits screen</string>
+    <string name="manage_srs_scren">Manage subreddits screen</string>
+    <string name="user_profile_screen">User profile screen</string>
+
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="test_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="post_thumbnail">Post thumbnail</string>
+    <string name="favorite_content_description">Click to mark subreddit favorite or unfavorite</string>
+    <string name="post_photo">Post Photo</string>
+    <string name="posts">Posts</string>
+    <string name="no_posts_available">No posts available</string>
+    <string name="subscribers">&#160;subscribers</string>
+    <string name="must_login">You must press \'allow\' to log in with this account</string>
+    <string name="favorite_msg">&#160;posts will be shown at the top of feed</string>
+    <string name="not_fav_msg">&#160;posts will not be shown at the top of feed</string>
+    <string name="subscribed_msg">Subscribed</string>
+    <string name="unsubscribed">Unsubscribed</string>
+    <string name="suscribing_msg">Subscribing..</string>
+    <string name="unsubscribing_msg">Unsubscribing..</string>
+    <string name="connect_to_internet">Please connect to internet</string>
+    <string name="subscribe_to_srs">Nothing to show.. Subscribe to subreddits!</string>
+    <string name="reddit_website">https://www.reddit.com</string>
+    <string name="no_results_found">No subreddits found!</string>
+</resources>

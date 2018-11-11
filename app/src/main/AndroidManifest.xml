@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.dex.redditreader">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name="com.dex.redditreader.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <activity
+            android:name="com.dex.redditreader.ui.PostListActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.dex.redditreader.ui.PostDetailActivity"
+            android:label="@string/title_post_detail"
+            android:parentActivityName="com.dex.redditreader.ui.PostListActivity"
+            android:screenOrientation="portrait">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dex.redditreader.ui.PostListActivity" />
+        </activity>
+
+        <activity
+            android:name="com.dex.redditreader.ui.LoginActivity"
+            android:label="Log into Reddit"
+            android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="net.dean.jraw.REDDIT_USERNAME"
+            android:value="dex1019" />
+
+        <activity
+            android:name="com.dex.redditreader.ui.SearchForSubredditsActivity"
+            android:label=""
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.dex.redditreader.ui.ManageSubredditsActivity"
+            android:label="@string/manage_subreddits"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.dex.redditreader.ui.UserProfileActivity"
+            android:label="@string/profile"
+            android:parentActivityName="com.dex.redditreader.ui.PostListActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dex.redditreader.ui.PostListActivity" />
+        </activity>
+
+        <service
+            android:name="com.dex.redditreader.sync.PostIntentService"
+            android:exported="false" />
+
+        <provider
+            android:name="com.dex.redditreader.data.generated.PostProvider"
+            android:authorities="com.dex.redditreader.data.PostProvider"
+            android:exported="false" />
+
+        <service
+            android:name="com.dex.redditreader.widget.PostWidgetRemoteViewService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <service
+            android:name="com.dex.redditreader.sync.PostJobService"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <receiver android:name="com.dex.redditreader.widget.PostWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.dex.redditreader.ACTION_DATA_UPDATED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
+
+    </application>
+
+</manifest>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_search_24dp"
+        android:title="@string/search_title"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/sort_order"
+        android:icon="@drawable/ic_sort_24dp"
+        android:title="@string/sort"
+        app:showAsAction="always">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/hot"
+                    android:title="@string/sort_hot" />
+                <item
+                    android:id="@+id/latest"
+                    android:title="@string/sort_new" />
+                <item
+                    android:id="@+id/top"
+                    android:title="@string/sort_top" />
+                <item
+                    android:id="@+id/controversial"
+                    android:title="@string/sort_controversial" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/manage_srs"
+        android:title="@string/manage_subreddits"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/account"
+        android:title="@string/profile"
+        app:showAsAction="never" />
+</menu>
