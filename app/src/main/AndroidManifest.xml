@@ -19,7 +19,6 @@
         <activity
             android:name="com.dex.redditreader.ui.PostListActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,8 +29,7 @@
         <activity
             android:name="com.dex.redditreader.ui.PostDetailActivity"
             android:label="@string/title_post_detail"
-            android:parentActivityName="com.dex.redditreader.ui.PostListActivity"
-            android:screenOrientation="portrait">
+            android:parentActivityName="com.dex.redditreader.ui.PostListActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -40,8 +38,7 @@
 
         <activity
             android:name="com.dex.redditreader.ui.LoginActivity"
-            android:label="Log into Reddit"
-            android:screenOrientation="portrait" />
+            android:label="Log into Reddit" />
 
         <meta-data
             android:name="net.dean.jraw.REDDIT_USERNAME"
@@ -50,18 +47,15 @@
         <activity
             android:name="com.dex.redditreader.ui.SearchForSubredditsActivity"
             android:label=""
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
+            android:launchMode="singleTop" />
         <activity
             android:name="com.dex.redditreader.ui.ManageSubredditsActivity"
-            android:label="@string/manage_subreddits"
-            android:screenOrientation="portrait" />
+            android:label="@string/manage_subreddits" />
 
         <activity
             android:name="com.dex.redditreader.ui.UserProfileActivity"
             android:label="@string/profile"
-            android:parentActivityName="com.dex.redditreader.ui.PostListActivity"
-            android:screenOrientation="portrait">
+            android:parentActivityName="com.dex.redditreader.ui.PostListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.dex.redditreader.ui.PostListActivity" />

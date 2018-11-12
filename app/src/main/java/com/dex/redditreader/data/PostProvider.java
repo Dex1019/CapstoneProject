@@ -10,6 +10,7 @@ import net.simonvt.schematic.annotation.TableEndpoint;
 
 @ContentProvider(authority = PostProvider.AUTHORITY, database = PostDatabase.class)
 public class PostProvider {
+
     public static final String AUTHORITY = "com.dex.redditreader.data.PostProvider";
     static final Uri BASE_CONTENT_URI = Uri.parse("content://" + AUTHORITY);
 
@@ -38,6 +39,7 @@ public class PostProvider {
                 type = "vnd.android.cursor.item/post",
                 whereColumn = PostColumns._ID,
                 pathSegment = 1)
+
         public static Uri withId(Integer id) {
             return buildUri(Path.POSTS, String.valueOf(id));
         }

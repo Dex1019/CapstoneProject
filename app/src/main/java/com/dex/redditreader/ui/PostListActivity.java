@@ -1,6 +1,7 @@
 package com.dex.redditreader.ui;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
@@ -64,6 +66,7 @@ public class PostListActivity extends AppCompatActivity implements PostsAdapter.
 
     public static final int POSTS_LOADER_ID = 11;
 
+
     @BindView(R.id.post_list)
     RecyclerView mPostsRV;
     @BindView(R.id.toolbar)
@@ -81,6 +84,11 @@ public class PostListActivity extends AppCompatActivity implements PostsAdapter.
     private SubredditPaginator paginator;
     private SharedPreferences preferences;
     private Tracker mTracker;
+
+    //
+    private LinearLayoutManager layoutManager;
+    public final static String LIST_STATE_KEY = "recycler_list_state";
+    Parcelable listState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +108,7 @@ public class PostListActivity extends AppCompatActivity implements PostsAdapter.
         mToolbar.setTitle(getTitle());
 
         adapter = new PostsAdapter(this);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this,
+        layoutManager = new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false);
         mPostsRV.setLayoutManager(layoutManager);
         mPostsRV.setAdapter(adapter);
@@ -128,6 +136,12 @@ public class PostListActivity extends AppCompatActivity implements PostsAdapter.
     @Override
     protected void onResume() {
         super.onResume();
+
+        if (listState != null) {
+            layoutManager.onRestoreInstanceState(listState);
+        }
+
+
         preferences.registerOnSharedPreferenceChangeListener(this);
 
         mTracker.setScreenName(getString(R.string.posts_list_screen));
@@ -190,8 +204,18 @@ public class PostListActivity extends AppCompatActivity implements PostsAdapter.
     @Override
     public void onPostClicked(Submission post) {
         Intent i = new Intent(this, PostDetailActivity.class);
-        i.putExtra(PostDetailActivity.ARG_ITEM_ID, post.getDataNode().toString());
-        startActivity(i);
+//        i.putExtra(PostDetailActivity.ARG_ITEM_ID, post.getDataNode().toString());
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+//            Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+            i.putExtra(PostDetailActivity.ARG_ITEM_ID, post.getDataNode().toString());
+            Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+
+            startActivity(i, bundle);
+        } else {
+            startActivity(i);
+        }
+        //startActivity(i);
     }
 
     @Override
@@ -356,6 +380,22 @@ public class PostListActivity extends AppCompatActivity implements PostsAdapter.
         userExit();
     }
 
+    protected void onSaveInstanceState(Bundle state) {
+        super.onSaveInstanceState(state);
+
+        // Save list state
+        listState = layoutManager.onSaveInstanceState();
+        state.putParcelable(LIST_STATE_KEY, listState);
+    }
+
+    protected void onRestoreInstanceState(Bundle state) {
+        super.onRestoreInstanceState(state);
+        if(state != null)
+            listState = state.getParcelable(LIST_STATE_KEY);
+
+    }
+
+
     private static class PostsAsyncTaskLoader extends AsyncTaskLoader {
         private Paginator paginator;
         private Context context;
@@ -414,4 +454,6 @@ public class PostListActivity extends AppCompatActivity implements PostsAdapter.
             }
         }
     }
+
+
 }
